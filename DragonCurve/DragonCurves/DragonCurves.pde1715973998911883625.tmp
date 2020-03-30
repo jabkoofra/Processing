@@ -1,0 +1,83 @@
+float x=0; //<>// //<>//
+float y=1;
+float ang = degrees(90);
+float sizeKart = 10;
+
+float nextX =0;
+float nextY =0;
+
+
+void setup() {
+  size(600, 600);
+}
+
+void moveF() {
+  nextY++;
+  nextX =  x*cos(ang) - y*sin(ang);
+  nextY =  x*sin(ang) + y*cos(ang);
+
+  nextX =  x*cos(ang) - y*sin(ang);
+  nextY =  x*sin(ang) + y*cos(ang);
+  nextY++;
+
+  nextX =  x*cos(-ang) - y*sin(-ang);
+  nextY =  x*sin(-ang) + y*cos(-ang);
+  nextY++;
+  nextX =  x*cos(-ang) - y*sin(-ang);
+  nextY =  x*sin(-ang) + y*cos(-ang);
+}
+
+void movePlus() {
+  nextY++;
+  nextX =  x*cos(-ang) - y*sin(-ang);
+  nextY =  x*sin(-ang) + y*cos(-ang);
+  nextY++;
+}
+
+
+void drawPoint() {
+  float px = map(x, -sizeKart, sizeKart, 0, width);
+  float py = map(y, -sizeKart, sizeKart, width, 0);
+  stroke(255, 0, 0);
+  point(px, py);
+  stroke(255);
+}
+
+void drawLine() {
+  float px = map(x, -sizeKart, sizeKart, 0, width);
+  float py = map(y, -sizeKart, sizeKart, width, 0);
+  float npx = map(nextX, -sizeKart, sizeKart, 0, width);
+  float npy = map(nextY, -sizeKart, sizeKart, width, 0);
+  line(px, py, npx, npy);
+}
+
+void draw() {
+  background(0);
+  stroke(255);
+  strokeWeight(4);
+  frameRate(1);
+  drawPoint();
+  moveF();
+  drawLine();
+
+  //nextX = (1/sqrt(2))* (x*cos(degrees(45)) - y*sin(degrees(45)));
+  //nextY = (1/sqrt(2))* (x*sin(degrees(45)) + y*cos(degrees(45)));
+
+  //drawLine();
+  //x=nextX;
+  //y=nextY;
+
+  //drawPoint();
+  //  for (int i=0; i<20; i++) {
+
+
+  //    nextX = (1/sqrt(2))* (x*cos(degrees(45+90*i)) - y*sin(degrees(45+90*i)))+x;
+  //    nextY = (1/sqrt(2))* (x*sin(degrees(45+90*i)) + y*cos(degrees(45+90*i)))+y;
+
+  //    drawPoint();
+
+  //    //    line(x+100, y+100, nextX+100, nextY+100);
+  //    x=nextX;
+  //    y=nextY;
+  //}
+}
